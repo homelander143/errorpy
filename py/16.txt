@@ -1,0 +1,99 @@
+16A}}
+
+import string
+
+def is_pangram(s):
+    """Check if the given string is a pangram."""
+    # Create a set of all lowercase letters
+    alphabet_set = set(string.ascii_lowercase)
+    
+    # Convert the input string to lowercase and create a set of characters
+    input_set = set(s.lower())
+    
+    # Check if all letters of the alphabet are in the input set
+    return alphabet_set.issubset(input_set)
+
+def main():
+    # Read input string from the user
+    input_string = input("Enter a string: ")
+    
+    # Check if the string is a pangram
+    if is_pangram(input_string):
+        print("The string is a pangram.")
+    else:
+        print("The string is not a pangram.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+16B}}
+
+def clockwise_rotation(s, k):
+    """
+    Perform clockwise rotation on string `s` by `k` positions.
+    """
+    n = len(s)
+    k = k % n  # Ensure k is within the length of the string
+    return s[-k:] + s[:-k]
+
+def anticlockwise_rotation(s, k):
+    """
+    Perform anticlockwise rotation on string `s` by `k` positions.
+    """
+    n = len(s)
+    k = k % n  # Ensure k is within the length of the string
+    return s[k:] + s[:k]
+
+def main():
+    # Input string and number of rotations
+    s = input("Enter the string: ")
+    k = int(input("Enter the number of rotations: "))
+
+    # Perform clockwise and anticlockwise rotations
+    cw_rotated = clockwise_rotation(s, k)
+    acw_rotated = anticlockwise_rotation(s, k)
+
+    # Display results
+    print(f"Clockwise rotation by {k} positions: {cw_rotated}")
+    print(f"Anticlockwise rotation by {k} positions: {acw_rotated}")
+
+if __name__ == "__main__":
+    main()
+
+
+
+16C}}
+
+
+def are_circularly_identical(list1, list2):
+    """
+    Check whether two lists are circularly identical.
+    """
+    if len(list1) != len(list2):
+        return False
+    
+    # Convert lists to strings for easier comparison
+    str1 = ''.join(map(str, list1))
+    str2 = ''.join(map(str, list2))
+    
+    # Check if str2 is a substring of str1 concatenated with itself
+    return str2 in (str1 + str1)
+
+def main():
+    # Input the first list
+    list1 = list(map(int, input("Enter the elements of the first list separated by spaces: ").split()))
+    
+    # Input the second list
+    list2 = list(map(int, input("Enter the elements of the second list separated by spaces: ").split()))
+    
+    # Check if the lists are circularly identical
+    if are_circularly_identical(list1, list2):
+        print("The two lists are circularly identical.")
+    else:
+        print("The two lists are not circularly identical.")
+
+if __name__ == "__main__":
+    main()
+

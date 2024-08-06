@@ -1,0 +1,87 @@
+1A}
+
+import cmath
+
+def find_roots(a, b, c):
+    # Calculate the discriminant
+    discriminant = b**2 - 4*a*c
+    
+    # Calculate the two roots using the quadratic formula
+    root1 = (-b + cmath.sqrt(discriminant)) / (2*a)
+    root2 = (-b - cmath.sqrt(discriminant)) / (2*a)
+    
+    return root1, root2
+
+def main():
+    # Input coefficients
+    a = float(input("Enter coefficient a: "))
+    b = float(input("Enter coefficient b: "))
+    c = float(input("Enter coefficient c: "))
+    
+    if a == 0:
+        print("Coefficient 'a' cannot be zero for a quadratic equation.")
+        return
+    
+    # Find the roots
+    root1, root2 = find_roots(a, b, c)
+    
+    # Print the roots
+    print(f"The roots of the quadratic equation are:")
+    print(f"Root 1: {root1}")
+    print(f"Root 2: {root2}")
+
+if __name__ == "__main__":
+    main()
+
+
+
+1B}
+
+def print_pattern(n):
+    for i in range(n, 0, -1):
+        for j in range(i, 0, -1):
+            print(j, end=' ')
+        print()  # Move to the next line after printing each row
+
+def main():
+    n = 5  # You can change this value to generate a different size pattern
+    print_pattern(n)
+
+if __name__ == "__main__":
+    main()
+
+
+
+1C}
+
+def analyze_string(s):
+    # Check if the string is alphabetic
+    if s.isalpha():
+        if s.isupper():
+            print("The string is in uppercase.")
+        elif s.islower():
+            print("The string is in lowercase.")
+        else:
+            print("The string contains mixed case letters.")
+    
+    # Check if the string is numeric
+    elif s.isdigit():
+        digit_sum = sum(int(digit) for digit in s)
+        print(f"The sum of the digits is: {digit_sum}")
+    
+    # If the string contains special characters
+    else:
+        special_char_count = sum(not char.isalnum() for char in s)
+        print(f"The total number of special characters is: {special_char_count}")
+
+def main():
+    # Read input from the user
+    input_string = input("Enter a string: ")
+    
+    # Analyze the string
+    analyze_string(input_string)
+
+if __name__ == "__main__":
+    main()
+
+

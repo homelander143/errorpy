@@ -1,0 +1,76 @@
+14A}}
+
+def remove_vowels(s):
+    """Remove all vowels from the string."""
+    vowels = 'aeiouAEIOU'
+    # Use a list comprehension to filter out vowels
+    filtered_string = ''.join(char for char in s if char not in vowels)
+    return filtered_string
+
+def main():
+    # Read input string from the user
+    input_string = input("Enter a string: ")
+    
+    # Remove vowels from the string
+    result = remove_vowels(input_string)
+    
+    # Display the result
+    print("String without vowels:", result)
+
+if __name__ == "__main__":
+    main()
+
+
+14B}}
+
+def sort_by_last_element(tuples_list):
+    """Sort a list of tuples by the last element of each tuple."""
+    # Sort the list of tuples by the last element of each tuple
+    sorted_list = sorted(tuples_list, key=lambda x: x[-1])
+    return sorted_list
+
+def main():
+    # Sample list of tuples
+    sample_list = [(2, 5), (1, 2), (4, 4), (2, 3), (2, 1)]
+    
+    # Get the sorted list
+    sorted_list = sort_by_last_element(sample_list)
+    
+    # Print the sorted list
+    print("Sorted list by the last element:", sorted_list)
+
+if __name__ == "__main__":
+    main()
+
+
+14C}}
+
+def swap_commas_and_dots(s):
+    """Swap commas and dots in the given string."""
+    # Replace commas with a temporary placeholder
+    temp_placeholder = '#'
+    s = s.replace(',', temp_placeholder)
+    
+    # Replace dots with commas
+    s = s.replace('.', ',')
+    
+    # Replace the temporary placeholder with dots
+    s = s.replace(temp_placeholder, '.')
+    
+    return s
+
+def main():
+    # Input string from the user
+    input_string = input("Enter a string with commas and dots: ")
+    
+    # Swap commas and dots
+    result = swap_commas_and_dots(input_string)
+    
+    # Display the result
+    print("Output:", result)
+
+if __name__ == "__main__":
+    main()
+
+
+

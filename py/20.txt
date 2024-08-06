@@ -1,0 +1,156 @@
+20A}}
+
+def find_top_students(students):
+    """
+    Find the students with the highest score in Physics, Maths, and Chemistry.
+    """
+    highest_physics = ('', -1)
+    highest_math = ('', -1)
+    highest_chemistry = ('', -1)
+    
+    for usn, marks in students.items():
+        if marks['Phy'] > highest_physics[1]:
+            highest_physics = (usn, marks['Phy'])
+        if marks['Math'] > highest_math[1]:
+            highest_math = (usn, marks['Math'])
+        if marks['Chem'] > highest_chemistry[1]:
+            highest_chemistry = (usn, marks['Chem'])
+    
+    return highest_physics, highest_math, highest_chemistry
+
+def convert_to_tuples(students):
+    """
+    Convert the dictionary of students to a list of tuples containing
+    (usn, total_marks, average_marks).
+    """
+    student_list = []
+    
+    for usn, marks in students.items():
+        total_marks = marks['Math'] + marks['Phy'] + marks['Chem']
+        average_marks = total_marks / 3
+        student_list.append((usn, total_marks, round(average_marks, 2)))
+    
+    return student_list
+
+def main():
+    # Example dictionary of students
+    students = {
+        '2ba17cs011': {'Math': 50, 'Phy': 80, 'Chem': 65},
+        '2ba17cs012': {'Math': 60, 'Phy': 75, 'Chem': 70},
+        '2ba17cs013': {'Math': 55, 'Phy': 85, 'Chem': 60},
+        '2ba17cs014': {'Math': 70, 'Phy': 80, 'Chem': 75}
+    }
+    
+    # Find the highest scorers in each subject
+    highest_physics, highest_math, highest_chemistry = find_top_students(students)
+    
+    print(f"Highest in Physics: {highest_physics[0]} with {highest_physics[1]}")
+    print(f"Highest in Maths: {highest_math[0]} with {highest_math[1]}")
+    print(f"Highest in Chemistry: {highest_chemistry[0]} with {highest_chemistry[1]}")
+    
+    # Convert dictionary to list of tuples
+    student_tuples = convert_to_tuples(students)
+    
+    print("Student data as tuples (usn, total_marks, average_marks):")
+    for student in student_tuples:
+        print(student)
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+
+
+20B}
+
+
+import ast
+
+def convert_str_dct(string):
+    """
+    Convert a string representation of a dictionary to an actual dictionary.
+    """
+    try:
+        # Use ast.literal_eval for safely evaluating the string to a dictionary
+        dictionary = ast.literal_eval(string)
+        
+        # Check if the result is indeed a dictionary
+        if isinstance(dictionary, dict):
+            return dictionary
+        else:
+            raise ValueError("The provided string does not represent a dictionary.")
+    except (SyntaxError, ValueError) as e:
+        raise ValueError(f"Invalid string format for dictionary: {e}")
+
+def convert_dct_str(dictionary):
+    """
+    Convert a dictionary to its string representation.
+    """
+    if isinstance(dictionary, dict):
+        # Convert dictionary to string
+        return str(dictionary)
+    else:
+        raise TypeError("The provided input is not a dictionary.")
+
+def main():
+    # Convert string to dictionary
+    str_input = input("Enter a string representation of a dictionary: ")
+    try:
+        dict_result = convert_str_dct(str_input)
+        print("Converted Dictionary:", dict_result)
+    except ValueError as e:
+        print(e)
+    
+    # Convert dictionary to string
+    dict_input = input("Enter a dictionary (e.g., {'key': 'value'}): ")
+    try:
+        dict_input = ast.literal_eval(dict_input)
+        if isinstance(dict_input, dict):
+            str_result = convert_dct_str(dict_input)
+            print("Converted String:", str_result)
+        else:
+            print("The provided input is not a dictionary.")
+    except (SyntaxError, ValueError) as e:
+        print(f"Invalid dictionary format: {e}")
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+20c}}
+
+import re
+
+def validate_passport_number(passport_number):
+    """
+    Validate an Indian passport number using a regular expression.
+    """
+    # Define the regular expression pattern for validating Indian passport numbers
+    pattern = r'^[A-Z][0-9]{7}$'
+    
+    # Use re.match to check if the passport number matches the pattern
+    if re.match(pattern, passport_number):
+        return True
+    else:
+        return False
+
+def main():
+    # Input passport number
+    passport_number = input("Enter an Indian passport number: ")
+    
+    # Validate the passport number
+    if validate_passport_number(passport_number):
+        print("The passport number is valid.")
+    else:
+        print("The passport number is invalid.")
+
+if __name__ == "__main__":
+    main()

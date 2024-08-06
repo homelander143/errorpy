@@ -1,0 +1,107 @@
+27a}}
+
+import tkinter as tk
+from tkinter import messagebox
+
+class GradeCardApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Student Grade Card")
+
+        # Create and place the labels and entry widgets for student information
+        tk.Label(root, text="Student Name:").grid(row=0, column=0, padx=10, pady=10, sticky='e')
+        self.name_entry = tk.Entry(root)
+        self.name_entry.grid(row=0, column=1, padx=10, pady=10)
+
+        tk.Label(root, text="Student ID:").grid(row=1, column=0, padx=10, pady=10, sticky='e')
+        self.id_entry = tk.Entry(root)
+        self.id_entry.grid(row=1, column=1, padx=10, pady=10)
+
+        tk.Label(root, text="Subject 1:").grid(row=2, column=0, padx=10, pady=10, sticky='e')
+        self.sub1_entry = tk.Entry(root)
+        self.sub1_entry.grid(row=2, column=1, padx=10, pady=10)
+
+        tk.Label(root, text="Subject 2:").grid(row=3, column=0, padx=10, pady=10, sticky='e')
+        self.sub2_entry = tk.Entry(root)
+        self.sub2_entry.grid(row=3, column=1, padx=10, pady=10)
+
+        tk.Label(root, text="Subject 3:").grid(row=4, column=0, padx=10, pady=10, sticky='e')
+        self.sub3_entry = tk.Entry(root)
+        self.sub3_entry.grid(row=4, column=1, padx=10, pady=10)
+
+        # Create and place the "Generate Grade Card" button
+        self.generate_button = tk.Button(root, text="Generate Grade Card", command=self.generate_grade_card)
+        self.generate_button.grid(row=5, column=0, columnspan=2, pady=20)
+
+    def generate_grade_card(self):
+        name = self.name_entry.get()
+        student_id = self.id_entry.get()
+        try:
+            sub1 = float(self.sub1_entry.get())
+            sub2 = float(self.sub2_entry.get())
+            sub3 = float(self.sub3_entry.get())
+        except ValueError:
+            messagebox.showerror("Invalid Input", "Please enter valid numerical grades.")
+            return
+
+        if not name or not student_id:
+            messagebox.showerror("Missing Information", "Please fill in all fields.")
+            return
+
+        average = (sub1 + sub2 + sub3) / 3
+        result = f"Grade Card\n\nName: {name}\nID: {student_id}\nSubject 1: {sub1}\nSubject 2: {sub2}\nSubject 3: {sub3}\nAverage: {average:.2f}"
+
+        messagebox.showinfo("Grade Card", result)
+
+def main():
+    root = tk.Tk()
+    app = GradeCardApp(root)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+27b}}}
+
+
+class Triangle:
+    def __init__(self, length, height):
+        self.length = length
+        self.height = height
+
+    def area(self):
+        """Calculate and return the area of the triangle."""
+        return 0.5 * self.length * self.height
+
+    def __gt__(self, other):
+        """Overload the > operator to compare areas of two triangles."""
+        return self.area() > other.area()
+
+    def __str__(self):
+        """Return a string representation of the triangle."""
+        return f"Triangle(length={self.length}, height={self.height}, area={self.area():.2f})"
+
+def main():
+    # Create two Triangle objects
+    triangle1 = Triangle(10, 5)
+    triangle2 = Triangle(8, 6)
+
+    # Print the triangles
+    print("Triangle 1:", triangle1)
+    print("Triangle 2:", triangle2)
+
+    # Compare the areas
+    if triangle1 > triangle2:
+        print("Triangle 1 has a greater area than Triangle 2.")
+    elif triangle1 < triangle2:
+        print("Triangle 2 has a greater area than Triangle 1.")
+    else:
+        print("Both triangles have the same area.")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,86 @@
+13A}}
+
+def find_uncommon_words(str1, str2):
+    """Find uncommon words between two strings."""
+    # Split the strings into words and convert to sets
+    words1 = set(str1.split())
+    words2 = set(str2.split())
+    
+    # Find uncommon words
+    uncommon_words = (words1 - words2) | (words2 - words1)
+    
+    return uncommon_words
+
+def main():
+    # Read input strings from the user
+    string1 = input("Enter the first string: ")
+    string2 = input("Enter the second string: ")
+    
+    # Find uncommon words
+    result = find_uncommon_words(string1, string2)
+    
+    # Display the uncommon words
+    print("Uncommon words:", ' '.join(result))
+
+if __name__ == "__main__":
+    main()
+
+
+13B}}
+
+def replace_last_value(tuples_list, new_value):
+    """Replace the last value of each tuple in the list with new_value."""
+    # Create a new list with modified tuples
+    modified_list = [(t[:-1] + (new_value,)) for t in tuples_list]
+    return modified_list
+
+def main():
+    # Sample list of tuples
+    sample_list = [(10, 20, 40), (40, 50, 60), (70, 80, 90)]
+    
+    # New value to replace the last value in each tuple
+    new_value = 100
+    
+    # Replace the last value of each tuple
+    result = replace_last_value(sample_list, new_value)
+    
+    # Print the modified list
+    print("Modified list:", result)
+
+if __name__ == "__main__":
+    main()
+
+
+
+13C}}
+
+
+import math
+
+def calculate_values(sequence):
+    """Calculate the values according to the formula Q = sqrt((2 * C * D) / H)."""
+    # Constants
+    C = 50
+    H = 30
+    
+    # Split the input sequence into individual numbers
+    numbers = [int(x) for x in sequence.split(',')]
+    
+    # Calculate Q for each value in the sequence
+    results = [int(math.sqrt((2 * C * D) / H)) for D in numbers]
+    
+    return results
+
+def main():
+    # Read input sequence from the user
+    input_sequence = input("Enter comma-separated values: ")
+    
+    # Calculate the results
+    result = calculate_values(input_sequence)
+    
+    # Print the results as comma-separated values
+    print("Output:", ','.join(map(str, result)))
+
+if __name__ == "__main__":
+    main()
+

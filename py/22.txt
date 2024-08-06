@@ -1,0 +1,121 @@
+22a}}
+
+def replace_words(input_string, lookup_dict):
+    """
+    Replace words in the input_string based on the lookup_dict.
+    """
+    words = input_string.split()
+    replaced_words = []
+    
+    for word in words:
+        # Check if the word is in the lookup dictionary
+        if word in lookup_dict:
+            replaced_words.append(lookup_dict[word])
+        else:
+            print(f"Replacement for '{word}' is not possible.")
+            replaced_words.append(word)  # Keep the original word if not found in dictionary
+    
+    # Join the replaced words to form the new string
+    return ' '.join(replaced_words)
+
+def main():
+    # Read input string from the user
+    input_string = input("Enter the string to process: ")
+    
+    # Read dictionary input from the user
+    print("Enter dictionary entries in the format 'word replacement' (type 'done' to finish):")
+    lookup_dict = {}
+    
+    while True:
+        entry = input()
+        if entry.lower() == 'done':
+            break
+        try:
+            word, replacement = entry.split()
+            lookup_dict[word] = replacement
+        except ValueError:
+            print("Invalid dictionary entry. Please enter in the format 'word replacement'.")
+    
+    # Replace words in the input string using the lookup dictionary
+    result_string = replace_words(input_string, lookup_dict)
+    
+    # Print the result
+    print("Processed string:", result_string)
+
+if __name__ == "__main__":
+    main()
+
+
+
+22B}}
+
+def is_power_of_two(num):
+    """
+    Check if a number is a power of 2.
+    """
+    # A number is a power of 2 if it is greater than 0 and only one bit is set
+    return (num > 0) and (num & (num - 1)) == 0
+
+def check_thabit(x):
+    """
+    Check if the given number x is a Thabit number.
+    A Thabit number is of the form 3 * 2^n - 1, where n is a non-negative integer.
+    """
+    if x < 0:
+        return False
+    
+    # Compute (x + 1) / 3
+    temp = (x + 1) / 3
+    
+    # Check if temp is a power of 2
+    return temp.is_integer() and is_power_of_two(int(temp))
+
+def main():
+    # Input number from the user
+    try:
+        number = int(input("Enter a number to check if it is a Thabit number: "))
+        
+        # Check if the number is a Thabit number
+        if check_thabit(number):
+            print(f"{number} is a Thabit number.")
+        else:
+            print(f"{number} is not a Thabit number.")
+    except ValueError:
+        print("Invalid input. Please enter an integer.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+22c}}
+
+import re
+
+def validate_driving_license(license_number):
+    """
+    Validate the Indian driving license number using a regular expression.
+    """
+    # Define the regular expression pattern for an Indian driving license number
+    pattern = r'^[A-Z]{2}-\d{2}-\d{4}-[A-Z]{1,2}$'
+    
+    # Use re.match to check if the license number matches the pattern
+    if re.match(pattern, license_number):
+        return True
+    else:
+        return False
+
+def main():
+    # Input driving license number from the user
+    license_number = input("Enter the Indian driving license number to validate: ")
+    
+    # Validate the license number
+    if validate_driving_license(license_number):
+        print(f"The driving license number '{license_number}' is valid.")
+    else:
+        print(f"The driving license number '{license_number}' is invalid.")
+
+if __name__ == "__main__":
+    main()

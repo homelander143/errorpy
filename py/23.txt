@@ -1,0 +1,186 @@
+23a}}
+
+import re
+
+def validate_voter_id(voter_id):
+    """
+    Validate the Indian Voter ID number using a regular expression.
+    """
+    # Define the regular expression pattern for an Indian Voter ID number
+    pattern = r'^[A-Z]{2}/\d{2}/\d{4}/[A-Z]{1,2}$'
+    
+    # Use re.match to check if the voter ID matches the pattern
+    if re.match(pattern, voter_id):
+        return True
+    else:
+        return False
+
+def main():
+    # Input voter ID from the user
+    voter_id = input("Enter the Indian Voter ID number to validate: ")
+    
+    # Validate the voter ID
+    if validate_voter_id(voter_id):
+        print(f"The Voter ID number '{voter_id}' is valid.")
+    else:
+        print(f"The Voter ID number '{voter_id}' is invalid.")
+
+if __name__ == "__main__":
+    main()
+
+
+23b}}
+
+def combine_lines(file1_path, file2_path, output_path):
+    """
+    Combine each line from the first file with the corresponding line from the second file
+    and write the result to the output file.
+    """
+    try:
+        # Open the first and second files for reading
+        with open(file1_path, 'r') as file1, open(file2_path, 'r') as file2:
+            # Read all lines from both files
+            lines1 = file1.readlines()
+            lines2 = file2.readlines()
+        
+        # Check if both files have the same number of lines
+        if len(lines1) != len(lines2):
+            raise ValueError("The number of lines in both files must be the same.")
+        
+        # Combine lines and write to the output file
+        with open(output_path, 'w') as output_file:
+            for line1, line2 in zip(lines1, lines2):
+                combined_line = line1.strip() + ' ' + line2.strip() + '\n'
+                output_file.write(combined_line)
+        
+        print("Lines have been successfully combined and written to the output file.")
+    
+    except FileNotFoundError as e:
+        print(f"Error: {e}")
+    except ValueError as e:
+        print(f"Error: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+def main():
+    # Input file paths
+    file1_path = input("Enter the path of the first file: ")
+    file2_path = input("Enter the path of the second file: ")
+    output_path = input("Enter the path of the output file: ")
+    
+    # Combine lines from both files and write to the output file
+    combine_lines(file1_path, file2_path, output_path)
+
+if __name__ == "__main__":
+    main()
+
+
+23c}}
+
+class ShoppingCart:
+    def __init__(self):
+        """
+        Initialize an empty shopping cart.
+        """
+        self.cart = {}
+    
+    def add_item(self, item_name, price, quantity=1):
+        """
+        Add an item to the shopping cart.
+
+        Parameters:
+        item_name (str): The name of the item.
+        price (float): The price of a single unit of the item.
+        quantity (int): The quantity of the item to add. Defaults to 1.
+        """
+        if item_name in self.cart:
+            self.cart[item_name]['quantity'] += quantity
+        else:
+            self.cart[item_name] = {'price': price, 'quantity': quantity}
+    
+    def remove_item(self, item_name, quantity=1):
+        """
+        Remove an item from the shopping cart.
+
+        Parameters:
+        item_name (str): The name of the item to remove.
+        quantity (int): The quantity of the item to remove. Defaults to 1.
+        """
+        if item_name in self.cart:
+            if self.cart[item_name]['quantity'] > quantity:
+                self.cart[item_name]['quantity'] -= quantity
+            elif self.cart[item_name]['quantity'] == quantity:
+                del self.cart[item_name]
+            else:
+                print(f"Cannot remove more items than present in the cart.")
+        else:
+            print(f"Item '{item_name}' not found in the cart.")
+    
+    def calculate_total(self):
+        """
+        Calculate the total price of items in the shopping cart.
+        
+        Returns:
+        float: The total price of all items in the cart.
+        """
+        total = 0.0
+        for item, details in self.cart.items():
+            total += details['price'] * details['quantity']
+        return total
+    
+    def display_cart(self):
+        """
+        Display the contents of the shopping cart.
+        """
+        if not self.cart:
+            print("The shopping cart is empty.")
+        else:
+            print("Shopping Cart:")
+            for item, details in self.cart.items():
+                print(f"{item}: ${details['price']} x {details['quantity']}")
+            print(f"Total Price: ${self.calculate_total():.2f}")
+
+def main():
+    # Create a shopping cart instance
+    cart = ShoppingCart()
+
+    while True:
+        print("\nOptions:")
+        print("1. Add item")
+        print("2. Remove item")
+        print("3. View cart")
+        print("4. Checkout")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            item_name = input("Enter the item name: ")
+            price = float(input("Enter the price of the item: "))
+            quantity = int(input("Enter the quantity of the item: "))
+            cart.add_item(item_name, price, quantity)
+            print(f"Added {quantity} {item_name}(s) to the cart.")
+
+        elif choice == '2':
+            item_name = input("Enter the item name to remove: ")
+            quantity = int(input("Enter the quantity to remove: "))
+            cart.remove_item(item_name, quantity)
+            print(f"Removed {quantity} {item_name}(s) from the cart.")
+
+        elif choice == '3':
+            cart.display_cart()
+
+        elif choice == '4':
+            print(f"Checkout Total: ${cart.calculate_total():.2f}")
+            cart.cart.clear()  # Empty the cart after checkout
+            print("Thank you for shopping with us!")
+
+        elif choice == '5':
+            print("Exiting...")
+            break
+
+        else:
+            print("Invalid choice. Please select a valid option.")
+
+if __name__ == "__main__":
+    main()

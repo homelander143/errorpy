@@ -1,0 +1,110 @@
+5A}}
+
+def is_buzz_number(number):
+    """
+    Function to check if a given number is a Buzz Number.
+    A Buzz Number is divisible by 7 or ends with the digit 7.
+    """
+    # Check if the number is divisible by 7
+    if number % 7 == 0:
+        return True
+    
+    # Check if the number ends with the digit 7
+    if number % 10 == 7:
+        return True
+    
+    return False
+
+# Input from the user
+try:
+    num = int(input("Enter a number: "))
+    
+    # Check if the number is a Buzz Number
+    if is_buzz_number(num):
+        print(f"{num} is a Buzz Number.")
+    else:
+        print(f"{num} is not a Buzz Number.")
+except ValueError:
+    print("Invalid input! Please enter a valid integer.")
+
+
+5B}}
+def main():
+    # Initialize the product to 1 (neutral element for multiplication)
+    product = 1
+    # Flag to check if we have entered at least one valid number
+    entered_at_least_one_number = False
+    
+    print("Enter numbers to multiply. Press -1 to stop.")
+
+    while True:
+        try:
+            # Read input from the user
+            number = int(input("Enter a number: "))
+            
+            # Check for termination condition
+            if number == -1:
+                break
+            
+            # Update the product
+            product *= number
+            entered_at_least_one_number = True
+
+        except ValueError:
+            print("Invalid input! Please enter a valid integer.")
+
+    # Print the result
+    if entered_at_least_one_number:
+        print(f"The product of all entered numbers is: {product}")
+    else:
+        print("No valid numbers were entered.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+5C}}
+
+import math
+
+def cosine_series(x, terms=10):
+    """
+    Evaluate the cosine of x using the series expansion.
+    
+    Parameters:
+    x (float): The angle in radians for which to calculate the cosine.
+    terms (int): The number of terms to include in the series expansion.
+    
+    Returns:
+    float: The approximate value of cosine(x).
+    """
+    cosine_value = 0
+    for n in range(terms):
+        # Calculate the term: (-1)^n * x^(2n) / (2n)!
+        term = ((-1)**n * x**(2*n)) / math.factorial(2*n)
+        cosine_value += term
+    
+    return cosine_value
+
+def main():
+    # Read the angle in radians from the user
+    try:
+        x = float(input("Enter the angle in radians: "))
+        
+        # Optionally specify the number of terms
+        terms = int(input("Enter the number of terms to include in the series: "))
+        
+        # Calculate cosine using the series expansion
+        cos_x = cosine_series(x, terms)
+        
+        print(f"The approximate value of cos({x}) using {terms} terms is: {cos_x}")
+    
+    except ValueError:
+        print("Invalid input! Please enter valid numbers.")
+
+if __name__ == "__main__":
+    main()
+
+
+

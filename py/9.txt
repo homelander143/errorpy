@@ -1,0 +1,108 @@
+9A}}
+
+import math
+
+def determine_point_position(x, y, r, x1, y1):
+    """
+    Determine whether the point (x1, y1) lies inside, on, or outside the circle
+    with center (x, y) and radius r.
+    
+    Parameters:
+    x, y (float): Coordinates of the center of the circle.
+    r (float): Radius of the circle.
+    x1, y1 (float): Coordinates of the point to check.
+    
+    Returns:
+    str: Position of the point relative to the circle ("Inside", "On", "Outside").
+    """
+    # Calculate the distance from the point (x1, y1) to the center of the circle (x, y)
+    distance = math.sqrt((x1 - x) ** 2 + (y1 - y) ** 2)
+    
+    # Determine the position of the point
+    if distance < r:
+        return "Inside"
+    elif distance == r:
+        return "On"
+    else:
+        return "Outside"
+
+def main():
+    try:
+        # Read the center coordinates and radius of the circle
+        x, y = map(float, input("Enter the center coordinates of the circle (x y): ").split())
+        r = float(input("Enter the radius of the circle: "))
+        
+        # Read the coordinates of the point to check
+        x1, y1 = map(float, input("Enter the coordinates of the point (x1 y1): ").split())
+        
+        # Determine the position of the point relative to the circle
+        position = determine_point_position(x, y, r, x1, y1)
+        print(f"The point ({x1}, {y1}) is {position} the circle.")
+    
+    except ValueError:
+        print("Invalid input! Please enter valid numbers.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+9B}}
+
+def print_pattern(n):
+    """
+    Print a pattern where each row contains the row number repeated.
+    
+    Parameters:
+    n (int): The number of rows in the pattern.
+    """
+    for i in range(1, n + 1):
+        # Print the number 'i' exactly 'i' times
+        for j in range(i):
+            print(i, end=' ')
+        # Move to the next line after each row
+        print()
+
+def main():
+    try:
+        # Number of rows for the pattern
+        num_rows = 5
+        
+        # Print the pattern
+        print_pattern(num_rows)
+    
+    except ValueError:
+        print("Invalid input! Please enter a valid integer.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+9C}}
+
+def is_prime(num):
+    """Check if a number is prime."""
+    if num <= 1:
+        return False
+    if num == 2:
+        return True
+    if num % 2 == 0:
+        return False
+    for i in range(3, int(num**0.5) + 1, 2):
+        if num % i == 0:
+            return False
+    return True
+
+def print_primes_between(N, M):
+    """Print all prime numbers between N and M (inclusive)."""
+    primes = []
+    for num in range(N, M + 1):
+        if is_prime(num):
+            primes.append(num)
+    print(" ".join(map(str, primes)))
+
+# Example usage
+N = int(input("Enter the start number (N): "))
+M = int(input("Enter the end number (M): "))
+print_primes_between(N, M)

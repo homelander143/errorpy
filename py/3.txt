@@ -1,0 +1,119 @@
+3A}}
+import math
+
+def sine_series(x, terms):
+    """
+    Compute the sine of x using the Taylor series expansion with a specified number of terms.
+    
+    Parameters:
+    x (float): The angle in radians for which to compute the sine.
+    terms (int): The number of terms to include in the Taylor series expansion.
+    
+    Returns:
+    float: The approximate value of sine(x).
+    """
+    sine_value = 0
+    for n in range(terms):
+        # Calculate the term (-1)^n * x^(2n+1) / (2n+1)!
+        term = ((-1)**n * x**(2*n + 1)) / math.factorial(2*n + 1)
+        sine_value += term
+    return sine_value
+
+def main():
+    try:
+        x = float(input("Enter the angle in radians: "))
+        terms = int(input("Enter the number of terms in the Taylor series: "))
+        
+        if terms <= 0:
+            print("Number of terms must be a positive integer.")
+            return
+        
+        # Compute the sine value using the Taylor series expansion
+        result = sine_series(x, terms)
+        
+        # Print the result
+        print(f"Sine({x}) ≈ {result}")
+    
+    except ValueError:
+        print("Invalid input. Please enter valid numbers.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+3B}}
+
+import math
+
+def main():
+    try:
+        # Read two integer numbers
+        a = int(input("Enter the first integer: "))
+        b = int(input("Enter the second integer: "))
+        
+        # Check if both numbers are odd and not equal
+        if a % 2 != 0 and b % 2 != 0 and a != b:
+            # Swap without using a third variable
+            a, b = b, a
+            print(f"After swapping: a = {a}, b = {b}")
+        
+        # Check if both numbers are even and not equal
+        elif a % 2 == 0 and b % 2 == 0 and a != b:
+            print(f"The largest even number is: {max(a, b)}")
+        
+        # Otherwise, compute the factorial of both numbers
+        else:
+            # Compute the factorial using the math module
+            factorial_a = math.factorial(a)
+            factorial_b = math.factorial(b)
+            print(f"Factorial of {a} is: {factorial_a}")
+            print(f"Factorial of {b} is: {factorial_b}")
+    
+    except ValueError:
+        print("Invalid input. Please enter valid integers.")
+    except OverflowError:
+        print("Factorial result is too large to handle.")
+
+if __name__ == "__main__":
+    main()
+
+
+3C}}
+
+def is_prime(n):
+    """Check if a number is a prime number."""
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def main():
+    try:
+        # Read integer input from the user
+        n = int(input("Enter an integer: "))
+        
+        # Check if the number is a prime number
+        if is_prime(n):
+            print(f"{n} is a prime number.")
+        else:
+            print(f"{n} is not a prime number.")
+    
+    except ValueError:
+        print("Invalid input. Please enter a valid integer.")
+
+if __name__ == "__main__":
+    main()
+
+
+

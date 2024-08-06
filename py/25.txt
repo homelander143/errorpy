@@ -1,0 +1,139 @@
+25a}}
+
+class Student:
+    def __init__(self, student_id, name, age, grade):
+        self.student_id = student_id
+        self.name = name
+        self.age = age
+        self.grade = grade
+
+    def __str__(self):
+        return f"ID: {self.student_id}, Name: {self.name}, Age: {self.age}, Grade: {self.grade}"
+
+class StudentManagementSystem:
+    def __init__(self):
+        self.students = {}
+    
+    def add_student(self, student_id, name, age, grade):
+        if student_id in self.students:
+            print(f"Student with ID {student_id} already exists.")
+        else:
+            student = Student(student_id, name, age, grade)
+            self.students[student_id] = student
+            print(f"Student {name} added successfully.")
+    
+    def remove_student(self, student_id):
+        if student_id in self.students:
+            del self.students[student_id]
+            print(f"Student with ID {student_id} removed successfully.")
+        else:
+            print(f"Student with ID {student_id} not found.")
+    
+    def update_student(self, student_id, name=None, age=None, grade=None):
+        if student_id in self.students:
+            student = self.students[student_id]
+            if name:
+                student.name = name
+            if age:
+                student.age = age
+            if grade:
+                student.grade = grade
+            print(f"Student with ID {student_id} updated successfully.")
+        else:
+            print(f"Student with ID {student_id} not found.")
+    
+    def display_all_students(self):
+        if not self.students:
+            print("No students available.")
+        else:
+            print("Student List:")
+            for student in self.students.values():
+                print(student)
+
+def main():
+    system = StudentManagementSystem()
+    
+    while True:
+        print("\nOptions:")
+        print("1. Add Student")
+        print("2. Remove Student")
+        print("3. Update Student")
+        print("4. Display All Students")
+        print("5. Exit")
+        
+        choice = input("Enter your choice: ")
+        
+        if choice == '1':
+            student_id = input("Enter Student ID: ")
+            name = input("Enter Student Name: ")
+            age = int(input("Enter Student Age: "))
+            grade = input("Enter Student Grade: ")
+            system.add_student(student_id, name, age, grade)
+        
+        elif choice == '2':
+            student_id = input("Enter Student ID to Remove: ")
+            system.remove_student(student_id)
+        
+        elif choice == '3':
+            student_id = input("Enter Student ID to Update: ")
+            name = input("Enter New Name (or press Enter to skip): ")
+            age_input = input("Enter New Age (or press Enter to skip): ")
+            grade = input("Enter New Grade (or press Enter to skip): ")
+            age = int(age_input) if age_input else None
+            system.update_student(student_id, name if name else None, age, grade if grade else None)
+        
+        elif choice == '4':
+            system.display_all_students()
+        
+        elif choice == '5':
+            print("Exiting...")
+            break
+        
+        else:
+            print("Invalid choice. Please select a valid option.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+25b}}
+
+
+import tkinter as tk
+from tkinter import messagebox
+from datetime import datetime
+
+def calculate_age():
+    try:
+        dob = datetime.strptime(dob_entry.get(), "%Y-%m-%d")
+        today = datetime.today()
+        age = today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
+        result_label.config(text=f"Your Age: {age} years")
+    except ValueError:
+        messagebox.showerror("Invalid Date", "Please enter the date in YYYY-MM-DD format")
+
+# Create the main window
+root = tk.Tk()
+root.title("Age Calculator")
+
+# Create and place the widgets
+tk.Label(root, text="Enter Date of Birth (YYYY-MM-DD):").pack(pady=10)
+dob_entry = tk.Entry(root)
+dob_entry.pack(pady=5)
+
+calculate_button = tk.Button(root, text="Calculate Age", command=calculate_age)
+calculate_button.pack(pady=10)
+
+result_label = tk.Label(root, text="Your Age: ")
+result_label.pack(pady=10)
+
+# Start the GUI event loop
+root.mainloop()
+
+
+
+
+
+

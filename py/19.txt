@@ -1,0 +1,174 @@
+19A}}
+
+def create_word_dictionary(text):
+    """
+    Create a dictionary with the first character of each word as the key
+    and a list of words starting with that character as the value.
+    """
+    word_dict = {}
+    
+    # Split the text into words
+    words = text.split()
+    
+    for word in words:
+        if not word:  # Skip empty words (if any)
+            continue
+        first_char = word[0].lower()  # Use lowercase for uniformity
+        
+        # Initialize the key if not already in the dictionary
+        if first_char not in word_dict:
+            word_dict[first_char] = []
+        
+        # Append the word to the list of the corresponding key
+        word_dict[first_char].append(word)
+    
+    return word_dict
+
+def main():
+    # Input text
+    text = input("Enter a line of text: ")
+    
+    # Create the dictionary
+    result = create_word_dictionary(text)
+    
+    # Display the dictionary
+    print("Dictionary with words grouped by their starting character:")
+    print(result)
+
+if __name__ == "__main__":
+    main()
+
+
+19B}}
+
+class Queue:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, item):
+        """Add an item to the end of the queue."""
+        self.queue.append(item)
+
+    def dequeue(self):
+        """Remove and return the item from the front of the queue."""
+        if self.is_empty():
+            raise IndexError("Dequeue from an empty queue")
+        return self.queue.pop(0)
+
+    def peek(self):
+        """Return the item at the front of the queue without removing it."""
+        if self.is_empty():
+            raise IndexError("Peek from an empty queue")
+        return self.queue[0]
+
+    def is_empty(self):
+        """Check if the queue is empty."""
+        return len(self.queue) == 0
+
+    def size(self):
+        """Return the number of items in the queue."""
+        return len(self.queue)
+
+def main():
+    q = Queue()
+    
+    # Perform queue operations
+    while True:
+        print("\nQueue Operations:")
+        print("1. Enqueue")
+        print("2. Dequeue")
+        print("3. Peek")
+        print("4. Check if Empty")
+        print("5. Size")
+        print("6. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            item = input("Enter the item to enqueue: ")
+            q.enqueue(item)
+            print(f"Enqueued: {item}")
+        elif choice == '2':
+            try:
+                item = q.dequeue()
+                print(f"Dequeued: {item}")
+            except IndexError as e:
+                print(e)
+        elif choice == '3':
+            try:
+                item = q.peek()
+                print(f"Front item: {item}")
+            except IndexError as e:
+                print(e)
+        elif choice == '4':
+            print("Queue is empty" if q.is_empty() else "Queue is not empty")
+        elif choice == '5':
+            print(f"Queue size: {q.size()}")
+        elif choice == '6':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+19C}}import re
+
+def validate_ipv4(ip):
+    """
+    Validate an IPv4 address using a regular expression.
+    """
+    pattern = r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
+    return re.match(pattern, ip) is not None
+
+def validate_ipv6(ip):
+    """
+    Validate an IPv6 address using a regular expression.
+    """
+    pattern = (r'^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|'
+               r'([0-9a-fA-F]{1,4}:){1,7}:|'
+               r'([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|'
+               r'([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|'
+               r'([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|'
+               r'([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|'
+               r'([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|'
+               r'[0-9a-fA-F]{1,4}(:[0-9a-fA-F]{1,4}){1,6}|'
+               r':((:[0-9a-fA-F]{1,4}){1,7}|:)|'
+               r'::([0-9a-fA-F]{1,4}:){1,6}[0-9a-fA-F]{1,4}|'
+               r'([0-9a-fA-F]{1,4}:){1,4}::([0-9a-fA-F]{1,4}:){1,4}|'
+               r'([0-9a-fA-F]{1,4}:){1,5}::([0-9a-fA-F]{1,4}:){1,3}|'
+               r'([0-9a-fA-F]{1,4}:){1,6}::([0-9a-fA-F]{1,4}:){1,2}|'
+               r'([0-9a-fA-F]{1,4}:){1,7}::([0-9a-fA-F]{1,4}:)?|'
+               r'([0-9a-fA-F]{1,4}:){1,8}|'
+               r'::([0-9a-fA-F]{1,4}:){1,7}|'
+               r'::([0-9a-fA-F]{1,4}:){1,6}|'
+               r'::([0-9a-fA-F]{1,4}:){1,5}|'
+               r'::([0-9a-fA-F]{1,4}:){1,4}|'
+               r'::([0-9a-fA-F]{1,4}:){1,3}|'
+               r'::([0-9a-fA-F]{1,4}:){1,2}|'
+               r'::[0-9a-fA-F]{1,4}|'
+               r'::)$')
+    return re.match(pattern, ip) is not None
+
+def main():
+    # Input IP address
+    ip = input("Enter an IP address: ")
+
+    # Validate IPv4 and IPv6 addresses
+    if validate_ipv4(ip):
+        print("The IP address is a valid IPv4 address.")
+    elif validate_ipv6(ip):
+        print("The IP address is a valid IPv6 address.")
+    else:
+        print("The IP address is invalid.")
+
+if __name__ == "__main__":
+    main()
+
+
+ 

@@ -1,0 +1,95 @@
+29a}}
+
+import tkinter as tk
+from tkinter import messagebox
+
+class EmployeeForm:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Employee Information Form")
+
+        # Create and place labels and entry widgets for employee information
+        tk.Label(root, text="Employee Name:").grid(row=0, column=0, padx=10, pady=10, sticky='e')
+        self.name_entry = tk.Entry(root)
+        self.name_entry.grid(row=0, column=1, padx=10, pady=10)
+
+        tk.Label(root, text="Employee ID:").grid(row=1, column=0, padx=10, pady=10, sticky='e')
+        self.id_entry = tk.Entry(root)
+        self.id_entry.grid(row=1, column=1, padx=10, pady=10)
+
+        tk.Label(root, text="Department:").grid(row=2, column=0, padx=10, pady=10, sticky='e')
+        self.department_entry = tk.Entry(root)
+        self.department_entry.grid(row=2, column=1, padx=10, pady=10)
+
+        tk.Label(root, text="Position:").grid(row=3, column=0, padx=10, pady=10, sticky='e')
+        self.position_entry = tk.Entry(root)
+        self.position_entry.grid(row=3, column=1, padx=10, pady=10)
+
+        # Create and place the "Submit" button
+        self.submit_button = tk.Button(root, text="Submit", command=self.submit_form)
+        self.submit_button.grid(row=4, column=0, columnspan=2, pady=20)
+
+    def submit_form(self):
+        name = self.name_entry.get()
+        emp_id = self.id_entry.get()
+        department = self.department_entry.get()
+        position = self.position_entry.get()
+
+        # Validate the inputs
+        if not name or not emp_id or not department or not position:
+            messagebox.showerror("Input Error", "Please fill in all fields.")
+            return
+
+        # Display the entered information
+        result = (f"Employee Information\n\n"
+                  f"Name: {name}\n"
+                  f"ID: {emp_id}\n"
+                  f"Department: {department}\n"
+                  f"Position: {position}")
+        messagebox.showinfo("Employee Information", result)
+
+def main():
+    root = tk.Tk()
+    app = EmployeeForm(root)
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+29b}}
+
+
+from datetime import datetime
+
+class Person:
+    def __init__(self, name, country, date_of_birth):
+        self.name = name
+        self.country = country
+        # date_of_birth should be a string in the format 'YYYY-MM-DD'
+        self.date_of_birth = datetime.strptime(date_of_birth, '%Y-%m-%d')
+
+    def calculate_age(self):
+        today = datetime.today()
+        age = today.year - self.date_of_birth.year - ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day))
+        return age
+
+    def display_info(self):
+        age = self.calculate_age()
+        return (f"Name: {self.name}\n"
+                f"Country: {self.country}\n"
+                f"Date of Birth: {self.date_of_birth.strftime('%Y-%m-%d')}\n"
+                f"Age: {age}")
+
+def main():
+    # Create a Person object
+    person = Person("Alice", "USA", "1990-05-15")
+
+    # Display the person's information
+    print(person.display_info())
+
+if __name__ == "__main__":
+    main()
