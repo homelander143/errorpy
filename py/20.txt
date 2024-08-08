@@ -120,37 +120,18 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-
-
-
-
 20c}}
-
 import re
-
-def validate_passport_number(passport_number):
-    """
-    Validate an Indian passport number using a regular expression.
-    """
-    # Define the regular expression pattern for validating Indian passport numbers
-    pattern = r'^[A-Z][0-9]{7}$'
-    
-    # Use re.match to check if the passport number matches the pattern
-    if re.match(pattern, passport_number):
-        return True
-    else:
+def isValidPassportNo(string):
+    regex = "^[A-PR-WY][1-9]\\d\\s?\\d{4}[1-9]$"
+    p = re.compile(regex)
+    if string == '':
         return False
-
-def main():
-    # Input passport number
-    passport_number = input("Enter an Indian passport number: ")
-    
-    # Validate the passport number
-    if validate_passport_number(passport_number):
+    m = re.match(p, string)
+    return bool(m)
+if __name__ == "__main__":
+    passport_no = input("Enter the passport number to validate: ")
+    if isValidPassportNo(passport_no):
         print("The passport number is valid.")
     else:
         print("The passport number is invalid.")
-
-if __name__ == "__main__":
-    main()
