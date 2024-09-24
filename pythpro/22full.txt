@@ -1,0 +1,49 @@
+#################22.a#####################
+def replace_words(input_string, lookup_dict):
+    words = input_string.split()
+    replaced_words = []
+    
+    for word in words:
+        if word in lookup_dict:
+            replaced_words.append(lookup_dict[word])
+        else:
+            replaced_words.append(f"[{word}: replacement not possible]")
+    
+    return ' '.join(replaced_words)
+
+# Read input from the user
+input_string = input("Enter the string: ")
+
+# Read the dictionary from the user
+lookup_dict = {}
+n = int(input("Enter the number of dictionary entries: "))
+
+for _ in range(n):
+    key = input("Enter the word to be replaced: ")
+    value = input("Enter the replacement word: ")
+    lookup_dict[key] = value
+
+# Replace words in the input string using the lookup dictionary
+result = replace_words(input_string, lookup_dict)
+print("Resulting string:", result)
+
+#####################22.b########################
+
+def check_thabit(number):
+    if number <= 0:
+        return False
+    
+    n = 0
+    while True:
+        thabit_number = 3 * (2 ** n) - 1
+        if thabit_number == number:
+            return True
+        elif thabit_number > number:
+            return False
+        n += 1
+
+# Test the function with some examples
+test_numbers = [5, 11, 23, 47, 95, 190]
+
+for num in test_numbers:
+    print(f"Is {num} a Thabit number? {'Yes' if check_thabit(num) else 'No'}")

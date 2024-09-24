@@ -1,0 +1,59 @@
+#######################21.a######################
+
+# Initial inventory
+shop = {
+    'chair': [10, 10000],
+    'sofa-set': [5, 60000],
+    'table': [7, 20000],
+    'bed': [4, 40000]
+}
+
+def check_availability_and_update(shop):
+    product = input("Enter the product name: ").lower()
+    if product in shop:
+        quantity, price = shop[product]
+        print(f"{product.title()} - Quantity: {quantity}, Price: {price}")
+
+        if quantity > 0:
+            quantity_sold = int(input("Enter the quantity to purchase: "))
+            if quantity_sold <= quantity:
+                shop[product][0] -= quantity_sold
+                income = quantity_sold * price
+                print(f"Purchase successful! Income generated: {income}")
+                print(f"Updated {product} - Quantity: {shop[product][0]}, Price: {price}")
+            else:
+                print(f"Insufficient stock. Only {quantity} available.")
+        else:
+            print(f"{product.title()} is out of stock.")
+    else:
+        print(f"{product.title()} is not available in the inventory.")
+
+# Run the function
+check_availability_and_update(shop)
+#######################21.b######################
+def compute_gcd(a, b):
+    if b == 0:
+        return a
+    else:
+        return compute_gcd(b, a % b)
+
+# Example usage
+num1 = 48
+num2 = 18
+print(f"The GCD of {num1} and {num2} is {compute_gcd(num1, num2)}")
+
+#####################21.c########################
+
+import re
+s=input("enter a password:")
+if(len(s)>=6 and len(s)<8):
+    uc=re.search(r'[A-Z]+',s)
+    lc=re.search(r'[a-z]+',s)
+    d=re.search(r'[0-9]+',s)
+    sc=re.search(r'[#@$]+',s)
+    if uc and lc and d and sc:
+        print("valid")
+    else:
+        print("invalid")
+else:
+    print("invalid")

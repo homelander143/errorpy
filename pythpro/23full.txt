@@ -1,0 +1,67 @@
+########23.a############
+import re
+s=input("enter a voter id number:")
+k=r"[ A-Z]{3}[0-9]{7}"
+v=re.findall(k,s)
+if v:
+    print("valid")
+else:
+    print("invalid")
+
+###########23.b#########
+f=open("file2.txt","r")
+f1=open("file3.txt","r")
+f2=open("combine.txt","w")
+l=[]
+l1=[]
+for i in f:
+    a=i.rstrip()
+    l.append(a)
+print(l)
+for j in f1:
+     a=j.rstrip()
+     l1.append(a)    
+print(l1)
+if len(l)>len(l1):
+    n=len(l1)
+else:
+    n=len(l)
+for k in range(n):
+    c=l[k]+' '+l1[k]+'\n'
+    print(c)
+    f2.write(c)
+f.close()
+f1.close()  
+f2.close()  
+##################23.c###########
+class cart:
+    def __init__(self):
+        self.li=[]
+    def add(self,x,y):
+        self.li.append([x,y])
+        print("item added")
+    def remove(self,x):
+        for i in self.li:
+            if i[0]==x:
+                self.li.remove[i]
+                print("not found")
+            else:
+                print("not found")
+    def cal(self):
+        p=0
+        for i in self.li:
+            p+=i[1]
+        return p
+c=cart()
+while True:
+    ch=input("add remove price")
+    if ch=="add":
+        x=input("item=")
+        y=int(input("price="))
+        c.add(x,y)
+    elif ch=="remove":
+        x=input("enter item to remove")
+        c.remove(x)
+    else:
+        total=c.cal()
+        print("price=",total)
