@@ -1,0 +1,39 @@
+################16.a#################
+s=input("Enter the string : ")
+f=0
+alp="abcdefghijklmnopqrstuvwxyz"
+for i in s:
+    if i not in alp:
+        f=1
+        break
+    else:
+        f=0
+if f==1:
+    print("String is not panagram")
+else:
+    print("String is panagram")
+################16.b#################
+s=input("Enter the string : ")
+n=int(input("Enter the size : "))
+n=n%len(s)
+a=s[n::]+s[:n:]
+b=s[len(s)-n::]+s[:len(s)-n:]
+print("Clockwise rotation : ",a)
+print("Anti clockwise rotation : ",b)
+################16.c#################
+n=int(input("Enter the size of list1 : "))
+l1=[]
+for i in range(n):
+    a=int(input("Enter the number : "))
+    l1.append(a)
+print(l1)
+n1=int(input("Enter the size of list2 : "))
+l2=[]
+for i in range(n1):
+    b=int(input("Enter the number : "))
+    l2.append(b)
+print(l2)
+if l1[0]==l2[-1] and l2[0]==l1[-1]:
+    print("Lists are circular")
+else:
+    print("Lists are not circular")

@@ -1,0 +1,37 @@
+################15.a#################
+s=input("Enter the string with spaces : ")
+a=s.split(' ')
+print(a)
+b=a[-1::-1]
+st=' '.join(b)
+print(st)
+################15.b#################
+s=input("Enter the numbers in binary form which are separated by comma : ")
+a=s.split(',')
+print(a)
+five="0101"
+l=[]
+for i in a:
+    if int(i)%int(five)==0:
+        l.append(i)
+st=','.join(l)
+print(st)
+################15.c#################
+m=int(input("Enter the number of rows: "))
+n=int(input("Enter the number of columns: "))
+l=[]
+for i in range(m):
+    l1=[]
+    for j in range(n):
+        x=int(input())
+        l1.append(x)
+    l.append(l1)
+print(l)
+l2=[]
+for i in l:
+    l3=[]
+    for j in range(n-1):
+        x=[i[j],i[-1]]
+        l3.append(x)
+    l2.append(l3)
+print(l2)

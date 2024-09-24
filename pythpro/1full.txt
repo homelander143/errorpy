@@ -1,0 +1,49 @@
+###############1.a#############
+from math import *
+a=int(input("Enter the value of a : "))
+b=int(input("Enter the value of b : "))
+c=int(input("Enter the value of c : "))
+qd=b*b-4*a*c
+if qd==0:
+    print("Roots are real and equal\n")
+    r1=-b/(2*a)
+    print("Roots : ",r1)
+elif qd>0:
+    print("Roots are real and distinct\n")
+    r1=(-b+(sqrt(qd)))/(2*a)
+    r2=(-b-(sqrt(qd)))/(2*a)
+    print("Root1 : ",r1)
+    print("Root2 : ",r2)
+else :
+    x=-b/(2*a)
+    y=sqrt(abs(qd))/(2*a)
+    r1=complex(x,y)
+    r2=complex(x,-y)
+    print("Root1 : ",r1)
+    print("Root2 : ",r2)
+###############1.b#############
+n=int(input("Enter the no. of lines to print : "))
+for i in range(n,0,-1):
+    for j in range(i,0,-1):
+        print(j,end=" ",sep=" ")
+    print()
+###############1.c#############
+s=input("Enter the string : ")
+if s.isalpha():
+    if s.islower():
+        print("Lower case\n")
+    elif s.isupper():
+        print("Upper case\n")
+elif s.isdigit():
+    summ=0
+    for i in s:
+        summ=summ+int(i)
+    print("sum of digits : ",summ)
+else:
+    ss=0
+    for i in s:
+        if i.isalnum():
+            pass
+        else:
+            ss=ss+1
+    print("No. of symbols : ",ss)

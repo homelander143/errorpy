@@ -1,0 +1,23 @@
+###################6.a####################
+n=int(input("Enter the number of lines : "))
+for i in range(n):
+    for j in range(i+1,0,-1):
+        print(j,end=" ")
+    print()
+###################6.b####################
+n=int(input("Enter the n numbers : "))
+x=int(input("Enter the number : "))
+for i in range(n-1):
+    y=int(input("Enter the number : "))
+    print((x+y)/2)
+    x=y
+###################6.c####################
+n=input("Enter the number : ")
+x=int(n)
+summ=0
+for i in n:
+    summ=summ+(int(i)**3)
+if summ==x:
+    print(x," is an armstrong number")
+else:
+    print(x," is not an armstrong number")

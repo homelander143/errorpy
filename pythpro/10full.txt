@@ -1,0 +1,54 @@
+###################10.a####################
+s=input("Enter the string : ")
+a=0
+n=0
+sc=0
+for i in s:
+    if i.isalpha():
+        a+=1
+    elif i.isdigit():
+        n+=1
+    else:
+        sc+=1
+print("No. of alphabets : ",a)
+print("No. of numbers : ",n)
+print("No. of special characters : ",sc)
+###################10.b####################
+s=input("Enter the string : ")
+ss=input("Enter the substring : ")
+st=""
+if ss in s:
+    nss=input("Enter the new substring : ")
+    a=s.replace(ss,nss)
+    print(a)
+else:
+    x=s[:(len(s)+1)//2]
+    y=s[(len(s))//2:len(s)]
+    st=st+x+ss+y
+    print(st)
+###################10.c####################
+s=input("Enter the number in words : ")
+a=s.split(' ')
+st=""
+for i in a:
+    if i=='one':
+        st=st+'1'
+    elif i=='two':
+        st=st+'2'
+    elif i=='three':
+        st=st+'3'
+    elif i=='four':
+        st=st+'4'
+    elif i=='five':
+        st=st+'5'
+    elif i=='six':
+        st=st+'6'
+    elif i=='seven':
+        st=st+'7'
+    elif i=='eight':
+        st=st+'8'
+    elif i=='nine':
+        st=st+'9'
+    elif i=='zero':
+        st=st+'0'
+print("Number in digits : ",st)

@@ -1,0 +1,40 @@
+###################7.a####################
+s=input("Enter the string : ")
+vow="aeiou"
+c=0
+if s.isalpha():
+    if s.startswith('t') or s.startswith('T'):
+        for i in s:
+            if i not in vow:
+                c=c+1
+        print("No. of consonents : ",c)
+elif s.isdigit():
+    a=s[-1::-1]
+    print(a)
+###################7.b####################
+n=input("Enter the number : ")
+f=0
+for i in range(len(n)):
+    if i==0:
+        if n[i]=='0':
+            f=0
+            break
+    else:
+        if n[i]=='0':
+            f=1
+            break
+        else:
+            f=0
+if f==1:
+    print(n," is duck number")
+else:
+    print(n," is not duck number")
+###################7.c####################
+from math import *
+n=int(input("Enter the number of lines : "))
+for i in range(n):
+    for j in range(n-i+1):
+        print(end=" ")
+    for j in range(i+1):
+        print((factorial(i)//(factorial(i-j)*factorial(j))),end=" ")
+    print()

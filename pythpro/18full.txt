@@ -1,0 +1,33 @@
+################18.a#################
+n=int(input("Enter the size of list : "))
+d={}
+l=[]
+for i in range(n):
+    a=int(input("Enter the number : "))
+    l.append(a)
+print(l)
+for i in l:
+    d[i]=l.count(i)
+print(d)
+################18.b#################
+def MIRROR_CHARACTER(a):
+    st=""
+    for i in range(len(a)):
+        st=st+(chr(ord('z')-(ord(s[i])-ord('a'))))
+    return st
+
+s=input("Enter the string : ")
+a=s.lower()
+print(MIRROR_CHARACTER(a))
+################18.c#################
+import re
+s=input("Enter the string : ")
+k=r'\b[A-Z]{4}0[A-Z0-9]{6}\b'
+if len(s)==11:
+    if re.search(k,s):
+        print("Valid IFSC code")
+    else:
+        print("Invalid IFSC code")
+else:
+        print("Invalid IFSC code")
+  

@@ -1,0 +1,41 @@
+################19.a#################
+s=input("Enter the sentence with spaces : ")
+a=s.split(' ')
+print(a)
+d={}
+for i in a:
+    d.setdefault(i[0],[])
+    d[i[0]].append(i)
+print(d)
+################19.b#################
+n=int(input('enter the size of queue:'))
+l=[]
+ch=int(input('enter your choice:\n1-insertion\n2-deletion\n3-display\n4-count'))
+if ch==1:
+    l.append(int(input('enter element:')))
+elif ch==2:
+    k=l.pop(0)
+    print("popped element:",k)
+elif ch==3:
+    print(l)
+elif ch==4:
+    print("queue count=",len(n))
+else:
+    print("Invalid choice")
+################19.c#################
+import re
+s=input("Enter the IP address: ")
+f=0
+k=r'\b[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\b'
+if re.search(k,s):
+    a=s.split('.')
+    for i in a:
+        if int(i)>=0 and int(i)<=255:
+            f=1
+        else:
+            print("Invalid IP address")
+            break
+else:
+    print("Invalid IP address")
+if f==1:
+    print("Valid IP address")

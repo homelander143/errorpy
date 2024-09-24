@@ -1,0 +1,86 @@
+################25.a#################
+class student:
+    scn="bvvs"
+    def __init__(self,a,b,c):
+        self.name=a
+        self.usn=b
+        self.cgpa=c
+    def display(self,us):
+        if self.usn==us:
+            print("Student details\n")
+            print("Name:",self.name)
+            print("USN:",self.usn)
+            print("CGPA:",self.cgpa)
+    def cgp(self,us):
+        if self.usn==us:
+            if self.cgpa>=9:
+                print("O grade")
+            elif self.cgpa>=8:
+                print("A grade")
+            elif self.cgpa>=7:
+                print("B grade")
+            elif self.cgpa>=6:
+                print("C grade")
+            elif self.cgpa>=4:
+                print("D grade")
+            else:
+                print("F grade")
+    def deletee(self,us):
+        if self.usn==us:
+            self.name=None
+            self.usn=None
+            self.cgpa=None
+        else:
+            print("Student doesn't exist")
+    def updatee(self,us,cg):
+        if self.usn==us:
+            self.cgpa=cg
+        else:
+            print("Student doesn't exist")
+
+n=int(input("Enter the number of students details you want to store : "))
+l=[]
+for i in range(n):
+    a=input("Enter the student name : ")
+    b=float(input("Enter the student cgpa : "))
+    s=student(a,i+1,b)
+    l.append(s)
+while True:
+    ch=input("Enter your choice : ")
+    if ch=='display':
+        x=int(input("Enter the USN of the student to display its details : "))
+        l[x-1].display(x)
+    elif ch=='cgpa':
+        x=int(input("Enter the USN of the student to display his cgpa : "))
+        l[x-1].cgp(x)
+    elif ch=='delete':
+        x=int(input("Enter the USN of the student to delete his information : "))
+        l[x-1].deletee(x)
+    elif ch=='update':
+        x=int(input("Enter the USN of the student to update his information : "))
+        z=input("Enter the new CGPA : ")
+        l[x-1].updatee(x,z)
+    else:
+        break
+################25.b#################
+from tkinter import *
+from datetime import date
+def disp():
+    k=e.get().split('-')
+    b=int(k[2])
+    x=date.today()
+    y=x.year
+    res=y-b
+    l1=Label(f,text="Person's age is "+str(res),font=20,fg="black")
+    l1.place(x=300,y=300)
+r=Tk()
+r.geometry('900x900')
+f=Frame(r,height=900,width=900,bg="yellow")
+f.place(x=0,y=0)
+l=Label(f,text="Enter the date of birth ",font=20,fg='red')
+l.place(x=300,y=100)
+e=Entry(f,width=20)
+e.place(x=300,y=150)
+b=Button(f,text="Age",fg="black",command=disp)
+b.place(x=300,y=200)
+r.mainloop()

@@ -1,0 +1,26 @@
+################14.a#################
+s=input("Enter the string : ")
+vow="aeiou"
+st=""
+for i in s:
+    if i not in vow:
+        st=st+i
+print(st)
+################14.b#################
+li=[[2,5],[1,2],[4,4],[2,3],[2,1]]
+for i in range(len(li)-1):
+    for j in range(len(li)-i-1):
+        if li[j][-1]>li[j+1][-1]:
+            li[j],li[j+1]=li[j+1],li[j]
+print(li)
+################14.c#################
+s="14,625,498.002"
+st=""
+for i in s:
+    if i.isdigit():
+        st=st+i
+    elif i==',':
+        st=st+'.'
+    elif i=='.':
+        st=st+','
+print(st)

@@ -1,0 +1,42 @@
+###################4.a####################
+n=int(input("Enter the number of lines : "))
+for i in range(n+1):
+    for j in range(n-i):
+        print(" ",end=" ")
+    for j in range(i+1):
+        print("*  ",end=" ")
+    print()
+###################4.b####################
+n=int(input("Enter the number : "))
+m=n
+while n%2==0:
+    n=n/2
+while n%3==0:
+    n=n/3
+while n%5==0:
+    f=n/5
+if n==1:
+    print(m," is an ugly number")
+else:
+    print(m," is not an ugly number")
+###################4.c####################
+from datetime import date
+x=date.today()
+print(x)
+a=int(input("Read your birth year : "))
+y=x.year
+age=y-a
+if age>=10 and age<=14:
+    print("Kid")
+elif age>=15 and age<=18:
+    print("teenage")
+elif age>=19 and age<=30:
+    print("young")
+elif age>=31 and age<=60:
+    print("middle young")
+elif age>=61 and age<=75:
+    print("middle old") 
+elif age>=76 and age<=90:
+    print("old") 
+else:
+    print("Old and Old") 

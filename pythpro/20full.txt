@@ -1,0 +1,60 @@
+################20.a#################
+# Sample dictionary of students with their marks in Math, Physics, and Chemistry
+students = {
+    '2ba17cs011': {'Math': 50, 'Phy': 80, 'Chem': 65},
+    '2ba17cs012': {'Math': 75, 'Phy': 60, 'Chem': 85},
+    '2ba17cs013': {'Math': 65, 'Phy': 90, 'Chem': 70},
+    '2ba17cs014': {'Math': 85, 'Phy': 70, 'Chem': 80}
+}
+
+# Finding the highest scorers in each subject
+highest_in_math = max(students, key=lambda x: students[x]['Math'])
+highest_in_phy = max(students, key=lambda x: students[x]['Phy'])
+highest_in_chem = max(students, key=lambda x: students[x]['Chem'])
+
+print(f"Highest in Math: {highest_in_math}")
+print(f"Highest in Physics: {highest_in_phy}")
+print(f"Highest in Chemistry: {highest_in_chem}")
+
+# Converting the dictionary to a list of tuples (USN, Total Marks, Average Marks)
+result = []
+for usn, marks in students.items():
+    total = sum(marks.values())
+    avg = total / 3
+    result.append((usn, total, round(avg, 2)))
+
+# Displaying the final list of tuples
+print(result)
+
+
+################20.b#################
+def CONVERT_STR_DICT(a):
+    d={}
+    b=a.split(" ")
+    for i in b:
+        c=i.split("-")
+        d[c[0]]=int(c[1])
+    return d
+
+def CONVERT_DICT_STR(s):
+    st=""
+    for i in s:
+        st=st+i+"-"+str(s[i])+" "
+    return st.rstrip()
+
+x=eval(input("Enter the dictionary : "))
+y=input("Enter the string : ")
+print(CONVERT_DICT_STR(x))
+print(CONVERT_STR_DICT(y))
+################20.c#################
+import re
+s=input("Enter passport number : ")
+if len(s)==8:
+    k=r'\b[A-Z]{1}[1-9]{1}[0-9]{1}[0-9]{4}[1-9]{1}\b'
+    if re.search(k,s):
+        print("Valid passport number")
+    else:
+        print("Invalid passport number")
+else:
+    print("Invalid passport number")
+
