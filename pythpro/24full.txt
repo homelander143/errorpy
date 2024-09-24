@@ -1,0 +1,99 @@
+############24.a##########
+import re
+f=open("email.txt","r")
+f1=open("eml.txt","w")
+for i in f:
+    k=r'[a-zA-Z0-9_.]+@[a-zA-Z0-9]+\.[a-z]{2,}'
+    l=re.search(k,i)
+    if l:
+        f1.write(l.group()+'\n')
+f.close()
+f1.close()
+
+###########24.b#############
+from tkinter import *
+# Function to perform addition
+def add():
+    try:
+        n1 = float(e.get())
+        n2 = float(e1.get())
+        result = n1 + n2
+        result_label.config(text=f"Result: {result}")
+    except ValueError:
+        result_label.config(text="Invalid input! Please enter numbers only.")
+def sub():
+    try:
+        n1 = float(e.get())
+        n2 = float(e1.get())
+        result = n1 - n2
+        result_label.config(text=f"Result: {result}")
+    except ValueError:
+        result_label.config(text="Invalid input! Please enter numbers only.")
+def mul():
+    try:
+        n1 = float(e.get())
+        n2 = float(e1.get())
+        result = n1*n2
+        result_label.config(text=f"Result: {result}")
+    except ValueError:
+        result_label.config(text="Invalid input! Please enter numbers only.")
+def div():
+    try:
+        n1 = float(e.get())
+        n2 = float(e1.get())
+        result = n1//n2
+        result_label.config(text=f"Result: {result}")
+    except ValueError:
+        result_label.config(text="Invalid input! Please enter numbers only.")
+
+# Initialize the main window
+r = Tk()
+r.geometry('900x900')
+
+# Create a frame and set its properties
+f = Frame(r, height=2000, width=2000, bg='lightblue')
+f.propagate(0)  # Prevent frame from resizing to its content
+f.pack()
+
+# Create a label and set its properties
+l = Label(f, text="Simple Calculator", font=('Italic', 15), bg='red', fg='yellow')
+l.place(x=400, y=10)  # Center the label with some padding
+
+# Create input labels and entry fields
+l1 = Label(f, text="Enter the first value      ", bg="yellow", fg="black")
+l2 = Label(f, text="Enter the second value", bg="yellow", fg="black")
+e = Entry(f, width=25)
+e1 = Entry(f, width=25)
+l1.place(x=250, y=100)
+l2.place(x=250, y=150)
+e.place(x=400, y=100)
+e1.place(x=400, y=150)
+
+# Button to trigger addition
+add_button = Button(f, text="Add", command=add, bg='green', fg='white')
+add_button.place(x=400, y=200)
+
+sub_button = Button(f, text="sub", command=sub, bg='green', fg='white')
+sub_button.place(x=500, y=200)
+
+mul_button = Button(f, text="mul", command=mul, bg='green', fg='white')
+mul_button.place(x=600, y=200)
+
+div_button = Button(f, text="div", command=div, bg='green', fg='white')
+div_button.place(x=700, y=200)
+
+# Label to display result
+result_label = Label(f, text="", bg="skyblue", fg="black",font=('italic',15))
+result_label.place(x=400, y=250)
+
+# Start the Tkinter event loop
+r.mainloop()
+##########24.c####################
+import re
+s=input("enter the pan number")
+k= r'^[A-Z]{5}[0-9]{4}[A-Z]$'
+a=re.match(k,s)
+if a:
+    print("valid")
+else:
+    print("invalid")

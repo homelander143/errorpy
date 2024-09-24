@@ -1,0 +1,88 @@
+###########28.a#############
+from tkinter import *
+def disp():
+    k=e1.get()
+    t=Text(f)
+    t.place(x=0,y=50)
+    t.insert(END,"Name : "+k+"\n")
+    k1=e2.get()
+    t.insert(END,"USN : "+k1+"\n")
+    if v.get()==1:
+        t.insert(END,"Student division : "+r1['text']+"\n")
+    elif v.get()==2:
+        t.insert(END,"Student division : "+r2['text']+"\n")
+    m=v1.get()
+    t.insert(END,"Semester : "+str(m)+"\n")
+    k2=li1.curselection()
+    p=[]
+    for i in k2:
+        p.append(li1.get(i))
+    t.insert(END,"Subject registered"+"\n")
+    for j in p:
+       t.insert(END,str(j)+"\t") 
+    t=Text(f)
+r=Tk()
+r.geometry('900x900')
+f=Frame(r,height=900,width=900,bg="yellow")
+f.place(x=0,y=0)
+l=Label(f,text="Student details",font=10,fg="red",bg="blue")
+l.place(x=430,y=50)
+l1=Label(f,text="Enter your name ",font=10,fg="red")
+l1.place(x=300,y=100)
+e1=Entry(f,width=30)
+e1.place(x=500,y=110)
+l2=Label(f,text="Enter your USN ",font=10,fg="red")
+l2.place(x=300,y=150)
+e2=Entry(f,width=30)
+e2.place(x=500,y=160)
+l3=Label(f,text="Select your division ",font=10,fg="red")
+l3.place(x=300,y=200)
+v=IntVar()
+r1=Radiobutton(f,text="A",variable=v,value=1,bg="light green")
+r1.place(x=500,y=200)
+r2=Radiobutton(f,text="B",variable=v,value=2,bg="light green")
+r2.place(x=500,y=240)
+l4=Label(f,text="Select Your semester",font=10,fg="red")
+l4.place(x=300,y=300)
+v1=IntVar()
+s1=Spinbox(f,from_=1,to_=8,textvariable=v1)
+s1.place(x=520,y=300)
+l5=Label(f,text="Select subject to register",font="10",fg="red")
+l5.place(x=300,y=350)
+li1=Listbox(f,activestyle="underline",selectmode="extended")
+li1.place(x=600,y=350)
+k=['DSA','PYTHON','FAFL','MATHS','OS','SS']
+for j in k:
+    li1.insert(END,j)
+b=Button(f,text="Register",command=disp,bg="blue",fg="black")
+b.place(x=500,y=550)
+r.mainloop()
+#################28.b#################
+class Actor:
+    def __init__(self, actor_name):
+        self.actor_name = actor_name
+
+    def display(self):
+        print("Actor:", self.actor_name)
+
+
+class Director:
+    def __init__(self, director_name):
+        self.director_name = director_name
+
+    def display(self):
+        print("Director:", self.director_name)
+
+
+class Movie(Actor, Director):
+    def __init__(self, movie_title, actor_name, director_name):
+        self.movie_title = movie_title
+        Actor.__init__(self, actor_name)
+        Director.__init__(self, director_name)
+
+    def display(self):
+        print("Movie Title:", self.movie_title)
+        super().display()
+        Director.display(self)
+m = Movie("Inception", "Leonardo DiCaprio", "Christopher Nolan")
+m.display()

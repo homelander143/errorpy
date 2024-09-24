@@ -1,0 +1,86 @@
+##################30.a#################
+from tkinter import *
+def disp(k):
+    k.tkraise()
+def amount():
+    a=int(v1.get())
+    res=100*a
+    l9=Label(f1,text="Amount to be paid : "+str(res),font="10",fg="red")
+    l9.place(x=200,y=350)
+r=Tk()
+r.geometry('900x900')
+f=Frame(r,width=900,height=900,bg="light blue")
+f.place(x=0,y=0)
+f1=Frame(r,width=900,height=900,bg="yellow")
+f1.place(x=0,y=0)
+l1=Label(f,text="Online shopping form ",font="10",fg="red")
+l1.place(x=100,y=100)
+l2=Label(f,text="Select the quantity",font="10",fg="red")
+l2.place(x=100,y=150)
+v1=IntVar()
+s1=Spinbox(f,from_=1,to_=100,textvariable=v1)
+s1.place(x=300,y=155)
+l3=Label(f,text="Select the size",font="10",fg="red")
+l3.place(x=100,y=200)
+v2=IntVar()
+s2=Spinbox(f,values=('XS','S','M','L','XL','XXl'),textvariable=v2)
+s2.place(x=300,y=205)
+b=Button(f,text="Shipping Info",bg="orange",command=lambda:disp(f1))
+b.place(x=210,y=250)
+l4=Label(f1,text="Shipping information",font="10",fg="red")
+l4.place(x=100,y=100)
+l5=Label(f1,text='Name : ',font="15",fg="red")
+l5.place(x=100,y=150)
+e1=Entry(f1,width=20)
+e1.place(x=210,y=155)
+l6=Label(f1,text='Address : ',font="15",fg="red")
+l6.place(x=100,y=200)
+e2=Entry(f1,width=20)
+e2.place(x=210,y=205)
+l7=Label(f1,text='Phone : ',font="15",fg="red")
+l7.place(x=100,y=250)
+e3=Entry(f1,width=20)
+e3.place(x=210,y=255)
+b1=Button(f1,text="Amount",bg="grey",command=amount)
+b1.place(x=150,y=300)
+disp(f)
+r.mainloop()
+###############30.b#################
+class Shape:
+    def area(self):
+        return 0
+    def peri(self):
+        return 1
+
+class Circle(Shape):
+    def __init__(self,x):
+        self.r=x
+    def area(self):
+        return 3.14*(self.r**2)
+    def peri(self):
+        return 3.14*self.r*2
+
+class Triangle(Shape):
+    def __init__(self,x,y,z):
+        self.l=x
+        self.b=y
+        self.h=z
+    def area(self):
+        return 0.5*self.l*self.b
+    def peri(self):
+        return self.l+self.b+self.h
+
+class Square(Shape):
+    def __init__(self,x):
+        self.a=x
+    def area(self):
+        return self.a*self.a
+    def peri(self):
+        return self.a*4  
+
+sq=Square(int(input("Enter side of square : ")))
+tri=Triangle(int(input("Enter length of triangle : ")),int(input("Enter breadth of triangle : ")),int(input("Enter hypotonuese of triangle : ")))
+circ=Circle(int(input("Enter radius of circle : ")))
+print("Square area  : ",sq.area(),"Square perimeter : ",sq.peri())
+print("Triangle area  : ",tri.area(),"Triangle perimeter : ",tri.peri())
+print("Circle area  : ",circ.area(),"Circle perimeter : ",circ.peri())
