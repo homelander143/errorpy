@@ -1,0 +1,42 @@
+create table employee(fname varchar(25) not null,mname varchar(25) not null,lname varchar(25) 
+not null,ssn char(9) not null,dob date,address varchar(50),gen char(1) check (gen in('m','f','o')),sal 
+decimal(10,2),superssn char(9),dno int default 1,constraint ssn_pk primary key(ssn)); 
+alter table employee add constraint dno_ch check(dno>=1 and dno<=10); 
+insert into employee (fname,mname,lname,ssn,dob,address,gen,sal) 
+values('James','E','Borg',888665555,'11-10 1937','450 stone,houston,TX','m',55000); 
+create table department(dname varchar(20),dno int not null,mgr_ssn char(9),mgr_start_date 
+date,constraint mgr_ssn_fk foreign key(mgr_ssn)references employee(ssn)on delete set null) 
+alter table department add constraint dno_ch_dept check(dno>=1 and dno<=10) 
+alter table department add constraint dno_pk primary key(dno) 
+alter table department add constraint dname_uni unique(dname) 
+insert into department values('Headquarters',1,888665555,'6-19-1981') 
+alter table employee add constraint fk_superssn foreign key(superssn) references employee(ssn)on 
+delete set null 
+insert into employee (fname,mname,lname,ssn,dob,address,gen,sal,superssn) 
+values('Franklin','T','Wong',333445555,'12-8-1955','638 voss,houston,TX','m',40000,888665555); 
+alter table employee add constraint dno_fk foreign key(dno)references department(dno) on delete 
+cascade; 
+update employee set dno=5 where ssn=333445555 
+update employee set dno=4 where ssn=987654321 
+create table dept_loc (dnum integer,dloc varchar(20) not null,primary key(dnum,dloc)); alter table 
+dept_loc add constraint fk_dnum foreign key (dnum) references department(dno) on delete cascade 
+desc dept_loc 
+insert into dept_loc values(1,'Houston') 
+create table project(pname varchar(20) not null,pnum integer,ploc varchar(20) not null,dnum 
+integer,primary key(pnum)) 
+alter table project add constraint fk_pdnum foreign key (dnum) references department(dno) on 
+delete cascade 
+alter table project add constraint uni_dno unique(pname) 
+desc project 
+insert into project values('ProductX',1,Bellaire,5) 
+create table works_on(essn char(9),pno integer,hours decimal(4,1)not null,primary key(essn,pno)) 
+alter table works_on add constraint fk_pno foreign key (pno)references project(pnum) on delete 
+cascade 
+alter table works_on add constraint fk_essn foreign key (essn) references employee(ssn) on delete 
+cascade 
+insert into works_on values(:essn,:pno,:hrs) 
+create table dependent(essn char(9),dep_name varchar(20),gen char(1),bdate date,relationship 
+varchar(20),check (gen in('m','f')),primary key(essn,dep_name)) desc dependent 
+alter table dependent add constraint fk_dep_essn foreign key(essn) references employee(ssn) on 
+delete cascade 
+insert into dependent values(:essn,:name,:gen,:bday,:relation) 
